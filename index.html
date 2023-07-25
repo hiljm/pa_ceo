@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=euc-kr">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta property="og:image" content="http://www.aia.co.kr/content/dam/kr/ko/images/site/og/aia-life.png">
+    <title> </title>
+
+    <style>
+        @font-face {
+            font-family: 'Pretendard Variable';
+            font-weight: 45 920;
+            font-style: normal;
+            font-display: swap;
+            src: local('Pretendard Variable'), url('./font/PretendardVariable.woff2') format('woff2-variations');
+        }
+
+        @-webkit-keyframes fadeInUp {
+            0% {opacity: 0; -webkit-transform: translateY(20px); transform: translateY(20px);}
+            100% {opacity: 1; -webkit-transform: translateY(0); transform: translateY(0);}
+        }
+        @keyframes fadeInUp {
+            0% {opacity: 0; -webkit-transform: translateY(20px); -ms-transform: translateY(20px); transform: translateY(20px);}
+            100% {opacity: 1; -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0);}
+        }
+        @-webkit-keyframes fadeInLeft {
+            0% { opacity: 0; -webkit-transform: translateX(-20px); transform: translateX(-20px); }
+            100% { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
+        }
+        @keyframes fadeInLeft {
+            0% { opacity: 0; -webkit-transform: translateX(-20px); -ms-transform: translateX(-20px); transform: translateX(-20px); }
+            100% {opacity: 1; -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+        }
+        @-webkit-keyframes fadeInRight {
+            0% { opacity: 0; -webkit-transform: translateX(20px); transform: translateX(20px); }
+            100% { opacity: 1; -webkit-transform: translateX(0); transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            0% { opacity: 0; -webkit-transform: translateX(20px); -ms-transform: translateX(20px); transform: translateX(20px); }
+            100% { opacity: 1; -webkit-transform: translateX(0); -ms-transform: translateX(0); transform: translateX(0); }
+        }
+        .fadeInRight { -webkit-animation-name: fadeInRight; animation-name: fadeInRight; }
+        .animate-plus {opacity: 0;}
+        .fadeInUp {-webkit-animation-name: fadeInUp; animation-name: fadeInUp;}
+        .fadeInLeft {-webkit-animation-name: fadeInLeft; animation-name: fadeInLeft; }
+        .animated {-webkit-animation-duration: 1s; animation-duration: 1s; -webkit-animation-fill-mode: both; animation-fill-mode: both;}
+
+
+        * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard Variable',"맑은 고딕",Sans-serif; font-weight: 300;}
+        html,body {font-family: 'Pretendard Variable',"맑은 고딕",Sans-serif; letter-spacing: -1px; word-break: keep-all; overflow-x: hidden; background-color: #fff;}
+        ul,ol,li {list-style: none;}
+        img {display: inline-block;}
+        a {background-color: transparent; text-decoration:none; display: inline-block;}
+        span {display: inline-block}
+        input[type="text"] { border: none; color: #000; outline: none; background-color: transparent;}
+        input:-ms-input-placeholder,
+        select:-ms-input-placeholder { color: #64696d !important; }
+        input::-webkit-input-placeholder,
+        select::-webkit-input-placeholder { color: #64696d; }
+        input::-moz-placeholder, 
+        select::-moz-placeholder { color: #000; }
+        input:focus, 
+        select:focus {outline: none;}
+        select {appearance: none; border: none; border-radius: 0; background-color: transparent;}
+        button {display: block; text-transform: none; border-style: none; padding: 0; background-color: transparent;}
+        option {color: #000;}
+
+        img {display: inline-block; width: auto;}
+
+        .hide {display: none;}
+        .bold { font-weight: bold; }
+
+        .only_pc {display: inline-block !important;}
+        .only_mo {display: none !important;}
+
+        .db_box {position: relative; font-size: 30px; padding: 40px 50px; border-radius: 34px; width: calc(100% - 100px); left: 50%; transform: translate(-50%,0);}
+        .db_box >h3 {padding-bottom: 30px;}
+        .db_box >h3 img {display: block; max-width: 74.19%; margin: 0 auto;}
+        .db_box input[type="text"],
+        .db_box select { width: 100%; height: 65px; padding: 0 15px 0 0; line-height: 65px; font-size: 30px; font-weight: 400; border-bottom: 1px solid #64696d; color: #64696d;}
+        .db_box select {color: #817a7a;}
+        .db_box select {background-image: url("./images/20230721_aia_select_arrow.png"); background-repeat: no-repeat; background-size: 30px; background-position: 95% center;}
+        .db_box ul li {position: relative; width: 100%; margin-bottom: 20px; }
+        .db_box ul li:last-child { margin-bottom:0; }
+        .db_box ul li.name { display: inline-block; }
+        .db_box ul li.name input { float: left; }
+        .db_box ul li.sex {display: flex; align-items: center; justify-content: space-between; position: absolute; top: 120px; right: 55px; width: 160px; padding: 0; }
+        .db_box ul li.sex input {display: flex; align-items: center; width: 1px; height: 1px; overflow: hidden; position: absolute; left: -9999px; }
+        .db_box ul li.sex input + label { position: relative; display: flex; align-items: center; cursor: pointer;}
+        .db_box ul li.sex input + label::before {content: ''; display: block; width: 26px; height: 26px; border: 1px solid #64696d; border-radius: 100px; margin-right: 10px;}
+        .db_box ul li.sex input:checked + label::after {content: ''; display: block; border-radius: 100px; background-color: #64696d; width: 12px; height: 12px; position: absolute; top: 50%; left: 8px; transform: translateY(-50%);}
+        .db_box .db_box_btn { width: 100%; margin-top: 40px; text-align: center;}
+        .db_box .db_box_btn a { display: inline-block;}
+
+        .inner {width: 100%; max-width: 720px; height: 100%; margin: 0 auto; position: relative;}
+        .bgImg {background-image: url('./images/20230721_aia_bg.jpg');}
+
+        .header {width: 100%; height: 90px;}
+        .header .inner {position: relative; display: flex; justify-content: space-between; align-items: center; padding: 0 25px;}
+
+        .sc1 {width: 100%;}
+        .sc1 .inner {height: 1454px;}
+        .sc1 .inner >* {position: absolute; z-index: 2;}
+        .sc1 .inner .img01 {left: 0; top: 20px; animation-delay: 0s;}
+        .sc1 .inner .img02 {left: 50px; top: 100px; animation-delay: 0.2s;}
+        .sc1 .inner .img03 {left: 50px; top: 306px; animation-delay: 0.4s;}
+        .sc1 .inner .img04 {right: 0; top: 85px; animation-delay: 0.6s;}
+        .sc1 .inner .img05 {left: 50px; top: 500px; animation-delay: 0.8s;}
+        .sc1 .inner .db_box {top: 830px; background-color: #fff}
+
+        .sc2 {width: 100%;}
+        .sc2 .inner {max-width: 100%; padding: 0 0 50px 0;}
+        .sc2 .inner >div {text-align: center;}
+        .sc2 .inner .title_bg {margin-bottom: 30px; background: linear-gradient(to bottom, #f7f7f7 90%, #f7f7f7 91.5%, #949494 91%, #949494 93%, #fff 93%)}
+        .sc2 .inner .img01 {background-image: url('./images/20230721_aia_sc2_title_bg.png'); background-repeat: no-repeat; background-size: contain; background-position: center; padding: 50px 0 80px;}
+        .sc2 .inner .img02 {margin-left: -20px;}
+        .sc2 .inner .img03 {margin-bottom: 20px; margin-right: -20px;}
+        .sc2 .inner .img04 {margin-bottom: 40px;}
+        .sc2 .inner .img05 {margin-bottom: 40px; background-image: url('./images/20230721_aia_sc2_title_bg.png'); background-repeat: no-repeat; background-size: contain; background-position: center; padding: 50px 0 80px;}
+        .sc2 .inner .img06 {margin-bottom: 10px;}
+        
+        .sc3 {width: 100%; background-image: url('./images/20230721_aia_sc3_bg.jpg'); background-repeat: repeat-x; background-size: cover; background-position: center; overflow: hidden;}
+        .sc3 .inner {padding: 55px 0 0;}
+        .sc3 .inner >div {text-align: center;}
+        .sc3 .inner .img02 {margin-left: -20px;}
+        .sc3 .inner .img03 {position: absolute; top: 430px; left: 50px; animation-delay: 0.2s;}
+        .sc3 .inner .img04 {position: absolute; top: 430px; right: 30px; animation-delay: 0.4s;}
+
+        .sc4 {width: 100%;}
+        .sc4 .inner {padding: 50px 0;}
+        .sc4 .inner .db_box {background-color: #1d2e55;}
+        .sc4 .inner .db_box >h3 img {max-width: 100%;}
+
+        .db_box.white input[type="text"],
+        .db_box.white select {color: #fff !important; border-color: #fff;}
+        .db_box.white input:-ms-input-placeholder,
+        .db_box.white select:-ms-input-placeholder { color: #fff !important; }
+        .db_box.white input::-webkit-input-placeholder,
+        .db_box.white select::-webkit-input-placeholder { color: #fff; }
+        .db_box.white input::-moz-placeholder { color: #fff; }
+        .db_box.white select::-moz-placeholder { color: #ababab; }
+        .db_box.white ul li.sex input + label {color: #fff;}
+        .db_box.white ul li.sex input + label::before {border-color: #fff;}
+        .db_box.white ul li.sex input:checked + label::after {background-color: #fff;}
+        .db_box.white select {background-image: url('./images/20230721_aia_select_arrow02.png');}
+
+        .guide_area .guide_top {width: 100%; background-color: #5a5a5a; text-align: center;}
+        .guide_area .guide_top button {width: 100%; cursor: pointer; padding: 10px 0;}
+        .guide_area .guide_wrap {display: none; text-align: center;}
+        .guide_area .guide_wrap.on {display: block;}
+
+        .footer {width: 100%; background-color: #ececec;}
+        .footer .inner {text-align: center; padding: 40px 0 50px;}
+        .footer .inner a {position: absolute; width: 180px; height: 70px; left: 160px; top: 30px; text-indent: -9999px;}
+
+        .floating {position: fixed; top: 220px; left: 50%; margin-left: 500px; width: 240px; background-color: #fff; border-radius: 30px; border: 8px solid #242e41; padding: 20px; opacity: 0; transition: opacity 0.3s;}
+        .floating.fixed { position: fixed; top: 220px; opacity: 1;}
+        .floating .db_box {text-align: center; font-size: 16px; padding: 0; width: auto; left: 0; transform: none;}
+        .floating .db_box >h3 img {max-width: 100%;}
+        .floating .db_box ul li {margin-bottom: 10px;}
+        .floating .db_box input[type="text"], 
+        .floating .db_box select {height: 35px; padding: 0 10px 0 0; line-height: 35px; font-size: 16px;letter-spacing: -1.25px; background-size: 16px;}
+        .floating .db_box ul li.sex {top: 55px; width: 90px; right: 0;}
+        .floating .db_box ul li.sex input + label::before {width: 17px; height: 17px; margin-right: 5px;}
+        .floating .db_box ul li.sex input:checked + label::after {width: 8px; height: 8px; left: 5px;}
+        .floating .db_box .db_box_btn {margin-top: 30px;}
+        .floating .db_box .db_box_btn img {width: 100%;}
+
+        .floating .inner {display: none;}
+        .floating .layer .btn {display: none;}
+
+        .popup.on {display: flex;}
+        .popup {display: none; position: fixed; top: 0; left: 0; align-items: center; justify-content: center; width: 100%;  background-color: rgba(0,0,0,0.3); z-index: 200;}
+        .popup .popup_content {background: #fff; z-index: 101; }
+        .popup.agree button { outline: none; }
+        .popup.agree .popup_inner { height: 100vh; padding: 80px 0; overflow-y: scroll; -ms-overflow-style: none; } 
+        .popup.agree .popup_inner::-webkit-scrollbar{ display:none; }
+        .popup.agree .popup_content { width: 650px; padding:30px; background:#fff; border:4px solid #d31145; border-radius: 56px; position: relative;}
+        .popup.agree .popup_content .img { width: 74%;}
+        .popup.agree .popup_content .img img { width: 100%;}
+        .popup.agree .wrap { padding:0; }
+        .popup.agree .wrap .agree { margin-top: 25px; }
+        .popup.agree .wrap .agree > div { position: relative;  margin-top: 5px;  }
+        .popup.agree .wrap .agree input { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+        .popup.agree .wrap .agree label { display:block; height:30px; padding-left: 36px; background: url("./images/w20230721_popup_radio_off.png") no-repeat left 0 top 0 / 24px auto; font-size: 20px; font-weight: 500;}
+        .popup.agree .wrap .agree label img { position:relative; top:2px; height:18px; }
+        .popup.agree .wrap .agree input:checked + label { background-image: url("./images/20230721_popup_radio_on.png"); }
+        .popup.agree .wrap .agree .toggle { height:120px; margin:6px 0 10px; background:#f6f6f6; overflow:auto; }
+        .popup.agree .wrap .agree .toggle img { width:100%; }
+        .popup.agree .wrap .all_check { margin-top:15px; cursor: pointer;}
+        .popup.agree .wrap .all_check,
+        .popup.agree .wrap .all_check img { width:100%; }
+        .popup.agree .btn_close { display:block; position:absolute; top:25px; right:30px; width:25px; height:25px; cursor: pointer; }
+        .popup.agree .btn_close img { width:100%; }
+
+
+        @media (max-width : 1080px) {
+            .floating { position:fixed; left:0; bottom:-22vw; width:100%; margin-left: 0; background:#fff; z-index:-1; transition: opacity 0.3s; opacity:0; background-color: #242e41; border-radius: 30px 30px 0 0; border: none;}
+            .show .floating { opacity:1; top: auto; bottom:0; height: auto; z-index:20; padding: 0;}
+
+            .floating .layer {position: absolute; left:0; bottom:-510px; height: 630px; transition:bottom 0.5s; background:#1d2e55; width: 100%; border-radius: 5vw 5vw 0 0; overflow: hidden;}
+            .floating .layer .btn {display: block;}
+            .floating.on .layer { bottom: 0; }
+            .floating.on .db_box { padding-top: 92px; }
+            .floating.on .open_form_btn img {transform: rotate(180deg);}
+
+            .floating .open_form_btn {position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 100%; height: 100px; text-align: center; padding-top: 20px; cursor: pointer;}
+            .floating .open_form_btn img {display: inline-block;}
+
+            .floating .inner ul li { float:left; width:48%; margin-right: 2%;}
+            .floating .inner ul li a {display: block;}
+            .floating .inner ul li:last-child {margin-right: 0;}
+            .floating .inner ul:after { content:""; display:block; clear:both; }
+            .floating .db_box { position:static; padding:55px 85px 65px; width: 100%;}
+            .floating .db_box * {font-size: 30px !important;}
+            .floating .db_box h3 {width: 70%; margin: 0 auto;}
+            .floating .db_box input[type="text"], 
+            .floating .db_box select {height: 70px; line-height: 70px; background-size: 3vw; padding: 0;}
+            .floating .db_box ul li {margin-bottom: 2vw;}
+            .floating .db_box ul li.sex { top: 177px; right: 85px; width: 152px;}
+            .floating .db_box ul li.sex input + label::before {width: 26px; height: 26px; margin-right: 10px;}
+            .floating .db_box ul li.sex input:checked + label::after {width: 14px; height: 14px; left: 7px;}
+
+            .floating .db_box input[type="text"],
+            .floating .db_box.on select {color: #fff !important; border-color: #fff;}
+            .floating .db_box input:-ms-input-placeholder,
+            .floating .db_box select:-ms-input-placeholder { color: #fff !important; }
+            .floating .db_box input::-webkit-input-placeholder,
+            .floating .db_box select::-webkit-input-placeholder { color: #fff; }
+            .floating .db_box input::-moz-placeholder { color: #fff; }
+            .floating .db_box select::-moz-placeholder { color: #ababab; }
+            .floating .db_box ul li.sex input + label {color: #fff;}
+            .floating .floating .db_box.white ul li.sex input + label::before {border-color: #fff;}
+            .floating .db_box ul li.sex input:checked + label::after {background-color: #fff;}
+            .floating .db_box select {background-image: url('./images/20230721_aia_select_arrow02.png');}
+            .floating .db_box .btn_area {display: none;}
+        }
+        
+        @media (max-width : 720px) {
+            .only_pc {display: none !important;}
+            .only_mo {display: inline-block !important;}
+
+            .db_box {font-size: 4.5vw; width: calc(100% - 13vw); padding: 5vw 6vw; border-radius: 4vw;}
+            .db_box >h3 {padding-bottom: 4vw;}
+            .db_box ul li {height: 9vw; margin-bottom: 2.5vw;}
+            .db_box input[type="text"],.db_box select {font-size: 4.5vw; height: 100%; line-height: unset;}
+            .db_box ul li.sex {width: 24vw; top: 14vw; right: 7vw;}
+            .db_box ul li.sex input + label::before {width: 4vw; height: 4vw; margin-right: 1.5vw;}
+            .db_box ul li.sex input:checked + label::after {width: 2.2vw; height: 2.2vw; left: 1.25vw;}
+            .db_box select {background-size: 4vw;}
+            .db_box .db_box_btn {margin-top: 7.5vw;}
+            .db_box img {width: 100%;}
+
+            .db_box.on .db_box_btn {margin-top: 3vw;}
+            .db_box .db_box_btn a {display: block; width: 100%;}
+            .db_box .db_box_btn img {width: 80% !important;}
+
+            .inner {max-width: 100%;}
+
+            .header {height: 12.5vw;}
+            .header .inner .logo {width: 18.5%;}
+            .header .inner .logo img {width: 100%;}
+            .header .inner .img {width: 30%;}
+            .header .inner .img img {width: 100%;}
+            
+            .sc1 .inner {height: 207vw;}
+            .sc1 .inner img {width: 100%;}
+            .sc1 .inner .img01 {width: 90.41%; top: 3vw;}
+            .sc1 .inner .img02 {width: 50.27%; top: 14vw; left: 6.5vw;}
+            .sc1 .inner .img03 {width: 48.05%; top: 42vw; left: 6.5vw;}
+            .sc1 .inner .img04 {width: 41.25%; top: 12.5vw;}
+            .sc1 .inner .img05 {width: 83.88%; top: 69vw; left: 6.5vw;}
+            .sc1 .inner .db_box {top: 115vw;}
+            
+            .sc2 .inner {padding: 0 0 6vw 0;}
+            .sc2 .inner .title_bg {background: none; margin-bottom: 3vw;}
+            .sc2 .inner .img01 {padding: 6vw 0 11vw; width: 100%;}
+            .sc2 .inner .img01 img {width: 64%}
+            .sc2 .inner .img02 {margin-left: -3vw;}
+            .sc2 .inner .img02 img {width: 88.05%;}
+            .sc2 .inner .img03 {margin-right: -3vw; margin-bottom: 4vw;}
+            .sc2 .inner .img03 img {width: 88.05%;}
+            .sc2 .inner .img04 {margin-bottom: 5vw;}
+            .sc2 .inner .img04 img {width: 85.13%;}
+            .sc2 .inner .img05 {padding: 8vw 0 13vw; width: 100%; margin-bottom: 5vw;}
+            .sc2 .inner .img05 img {width: 62%;}
+            .sc2 .inner .img06 {margin-bottom: 2vw;}
+            .sc2 .inner .img06 img {width: 87.63%;}
+            .sc2 .inner .img07 img {width: 47.91%;}
+            
+            .sc3 .inner .img01 img {width: 81.8%;}
+            .sc3 .inner .img02 {margin-left: -3vw;}
+            .sc3 .inner .img02 img {width: 93.88%;}
+            .sc3 .inner .img03 {top: 59vw; left: 6vw; width: 27.08%;}
+            .sc3 .inner .img03 img {width: 100%;}
+            .sc3 .inner .img04 {top: 59vw; right: 4vw; width: 27.08%;}
+            .sc3 .inner .img04 img {width: 100%;}
+
+            .sc4 .inner {padding: 6vw 0;}
+
+            .guide_area .guide_wrap img {width: 100%;}
+            .guide_area .guide_top button {width: 42.77%; margin: 0 auto;}
+            .guide_area .guide_top button img {width: 100%;}
+
+            .footer .inner {padding: 5vw 0 6vw;}
+            .footer .inner img {width: 97.08%;}
+
+            .floating .db_box * {font-size: 4.5vw !important;}
+            .floating .db_box {padding: 10vw 9vw 7vw;}
+            .floating.on .db_box {padding: 16vw 9vw 7vw;}
+            .floating .open_form_btn {padding-top: 3vw;}
+            .floating .open_form_btn img {width: 5%;}
+            .floating .layer {bottom: -87vw; height: 107vw;}
+            .floating .db_box ul li {height: auto;}
+            .floating .db_box input[type="text"], .floating .db_box select {height: 12vw; line-height: 12vw;}
+            .floating .db_box ul li.sex {top: 28vw; right: 9vw; width: 28vw;}
+            .floating .db_box ul li.sex input + label::before {width: 4vw; height: 4vw; margin-right: 1.5vw;}
+            .floating .db_box ul li.sex input:checked + label::after {width: 2.2vw; height: 2.2vw; left: 1.25vw;}
+            .floating .db_box .db_box_btn a {display: block; width: 100%;}
+            .floating .db_box .db_box_btn img {width: 70%;}
+            .floating .db_box select {color: #fff;}
+            .floating .db_box .db_box_btn {margin-top: 6vw;}
+    
+            .popup .popup_content { position: fixed; left: 50%; top: 50%; background: #fff; z-index: 101; }
+            .popup.agree button { outline: none; }
+            .popup.agree .popup_content { width: 93%; left: 3.5%; top: 2%; height: auto; margin:0; padding:5vw; border-radius: 8vw; background:#fff; border:2px solid #d31145; }
+            .popup.agree .popup_content .img {width:74%;}
+            .popup.agree .popup_content .img img {width:100%;}
+            .popup.agree .wrap { padding:0; }
+            .popup.agree .wrap .agree { margin-top: 3.6666vw; }
+            .popup.agree .wrap .agree > div { position: relative;  margin-top: 5px;  }
+            .popup.agree .wrap .agree input { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+            .popup.agree .wrap .agree label { display:block; height: 4.5vw; padding-left: 5.1111vw; background: url("./images/w20230721_popup_radio_off.png") no-repeat left top / 3.8888vw auto; font-size: 3vw;}
+            .popup.agree .wrap .agree label img { position:relative; top:2vw; width:auto; height:3.3333vw; }
+            .popup.agree .wrap .agree input:checked + label { background-image: url("./images/20230721_popup_radio_on.png"); }
+            .popup.agree .wrap .agree .toggle { height:15vw; margin:1.1111vw 0 2.2222vw; border:1px solid #dfdfdf; overflow:auto; }
+            .popup.agree .wrap .agree .toggle img { width:100%; }
+            .popup.agree .wrap .all_check { margin-top:3vw; }
+            .popup.agree .wrap .all_check,
+            .popup.agree .wrap .all_check img { width:100%; }
+            .popup.agree .wrap .btn_area .btn_result { display:none; }
+            .popup.agree .wrap .btn_area { margin-top:3.3333vw; padding-bottom:4.4444vw; }
+            .popup.agree .wrap .btn_area:after { content:""; display:block; clear:both; }
+            .popup.agree .wrap .btn_area a { display:block; float:right; width:42.2222vw; }
+            .popup.agree .btn_close { display:block; position:absolute; top:3.3333vw; right:3.3333vw; width:5vw; height:5vw;  }
+            .popup.agree .btn_close img { width:100%; }
+
+        }
+    </style>
+</head>
+<body>
+    <div id="AIA_wrap">
+        <div class="header bgImg">
+            <div class="inner">
+                <a href="#" class="logo"><img src="./images/20230721_aia_logo.png" alt=""></a>
+                <div class="img"><img src="./images/20230721_aia_header.png" alt=""></div>
+            </div>
+        </div>
+        <div class="contents">
+            <div class="sc1 bgImg">
+                <div class="inner">
+                    <div class="img01 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc1_img01.png" alt=""></div>
+                    <div class="img02 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc1_img02.png" alt=""></div>
+                    <div class="img03 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc1_img03.png" alt=""></div>
+                    <div class="img04 animate-plus" data-animations="fadeInRight" data-animation-when-visible="true"><img src="./images/20230721_aia_sc1_img04.png" alt=""></div>
+                    <div class="img05 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc1_img05.png" alt=""></div>
+
+                    <div class="db_box">
+                        <h3><img src="./images/20230721_aia_form_title.png" alt=""></h3>
+                        <form method="post" action="" name="frm">
+                            <ul>
+                                <li class="name">
+                                    <input type="text" id="rn_cust_name" name="rn_cust_name" placeholder="이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름" >
+                                </li>		
+                                <li class="sex">
+                                    <input type="radio" id="rn_sex1" name="rn_sex" value="M" checked="checked">
+                                    <label for="rn_sex1">남</label>
+                                    <input type="radio" id="rn_sex2" name="rn_sex" value="F">
+                                    <label for="rn_sex2">여</label>
+                                </li>
+                                <li class="phone">
+                                    <input type="text" id="cr_mphone" name="cr_mphone" maxlength="11" placeholder="연&nbsp;&nbsp;&nbsp;락&nbsp;&nbsp;&nbsp;처" onKeyUp="onlyNumberWithBar(this);numToTel(this);"onKeyPress="checkInt()">
+                                </li>
+                                <li class="birth">
+                                    <input type="text" id="rn_jumin1" name="rn_jumin1" maxlength="6" placeholder="생&nbsp;년&nbsp;월&nbsp;일" onKeyUp="onlyNumber(this);" onKeyPress="checkInt()">
+                                </li>
+                                <li class="region">
+                                    <select>
+                                        <option value="" disabled selected>지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</option>
+                                        <option value="서울">서울</option>
+                                        <option value="경기">경기</option>
+                                        <option value="부산">부산</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </form>	
+                        <div class="db_box_btn">
+                            <a href="javascript:void(0)" onclick="return false" class="open_popup" >
+                                <img src="./images/20230721_aia_form_btn.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sc2">
+                <div class="inner">
+                    <div class="title_bg">
+                        <div class="img01">
+                            <img src="./images/20230721_aia_sc2_title.png" alt="" class="animate-plus" data-animations="fadeInUp" data-animation-when-visible="true">
+                        </div>
+                    </div>
+
+                    <div class="img02 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc2_img01.png" alt=""></div>
+                    <div class="img03 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc2_img02.png" alt=""></div>
+                    <div class="img04 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc2_img03.png" alt=""></div>
+
+                    <div class="title_bg">
+                        <div class="img05">
+                            <img src="./images/20230721_aia_sc2_title02.png" alt="" class="animate-plus" data-animations="fadeInUp" data-animation-when-visible="true">
+                        </div>
+                    </div>
+
+                    <div class="img06 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc2_img04.png" alt=""></div>
+                    <div class="img07 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc2_img05.png" alt=""></div>
+                </div>
+            </div>
+            <div class="sc3">
+                <div class="inner">
+                    <div class="img01 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc3_title.png"  alt=""></div>
+                    <div class="img02 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc3_img01.png"  alt=""></div>
+                    <div class="img03 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc3_img02.png"  alt=""></div>
+                    <div class="img04 animate-plus" data-animations="fadeInUp" data-animation-when-visible="true"><img src="./images/20230721_aia_sc3_img03.png"  alt=""></div>
+                </div>
+            </div>
+            <div class="sc4">
+                <div class="inner">
+                    <div class="db_box white">
+                        <h3><img src="./images/20230721_aia_form_title02.png" alt=""></h3>
+                        <form method="post" action="" name="frm">
+                            <ul>
+                                <li class="name">
+                                    <input type="text" id="rn_cust_name" name="rn_cust_name" placeholder="이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름" >
+                                </li>		
+                                <li class="sex">
+                                    <input type="radio" id="rn_sex1" name="rn_sex" value="M" checked="checked">
+                                    <label for="rn_sex1">남</label>
+                                    <input type="radio" id="rn_sex2" name="rn_sex" value="F">
+                                    <label for="rn_sex2">여</label>
+                                </li>
+                                <li class="phone">
+                                    <input type="text" id="cr_mphone" name="cr_mphone" maxlength="11" placeholder="연&nbsp;&nbsp;&nbsp;락&nbsp;&nbsp;&nbsp;처" onKeyUp="onlyNumberWithBar(this);numToTel(this);"onKeyPress="checkInt()">
+                                </li>
+                                <li class="birth">
+                                    <input type="text" id="rn_jumin1" name="rn_jumin1" maxlength="6" placeholder="생&nbsp;년&nbsp;월&nbsp;일" onKeyUp="onlyNumber(this);" onKeyPress="checkInt()">
+                                </li>
+                                <li class="region">
+                                    <select>
+                                        <option value="" disabled selected>지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</option>
+                                        <option value="서울">서울</option>
+                                        <option value="경기">경기</option>
+                                        <option value="부산">부산</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </form>
+                        <div class="db_box_btn">
+                            <a href="javascript:void(0)" onclick="return false" class="open_popup" >
+                                <img src="./images/20230721_aia_form_btn02.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- guide -->
+            <div class="guide_area">
+                <div class="guide_top">
+                    <button type="button"><img src="./images/20230721_aia_guide_img01.png" alt=""></button>
+                </div>
+                <div class="guide_wrap">
+                    <img src="./images/w2023721_guaranteedissue.png" alt="" class="">
+                </div>
+            </div> 
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="inner">
+                    <img src="./images/20230723_blank.gif" data-pc-src="./images/w20221111_aia_footer.png" data-mo-src="./images/m20221111_aia_footer.png" alt="">
+                    <a href="#">AIA.COM</a>
+                </div>
+            </div>
+
+
+
+            <!-- floating -->
+            <div class="floating">
+                <div class="layer">
+                    <div class="db_box">
+                        <h3>
+                            <img src="./images/20230721_blank.gif" data-pc-src="./images/w20230721_aia_floating_title.png" data-mo-src="./images/m20230721_aia_floating_title.png" alt="">
+                        </h3>
+                        <form method="post" action="" name="frm">
+                            <ul>
+                                <li class="name">
+                                    <input type="text" id="rn_cust_name" name="rn_cust_name" placeholder="이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름" >
+                                </li>		
+                                <li class="sex">
+                                    <input type="radio" id="rn_sex1" name="rn_sex" value="M" checked="checked">
+                                    <label for="rn_sex1">남</label>
+                                    <input type="radio" id="rn_sex2" name="rn_sex" value="F">
+                                    <label for="rn_sex2">여</label>
+                                </li>
+                                <li class="phone">
+                                    <input type="text" id="cr_mphone" name="cr_mphone" maxlength="11" placeholder="연&nbsp;&nbsp;&nbsp;락&nbsp;&nbsp;&nbsp;처" onKeyUp="onlyNumberWithBar(this);numToTel(this);"onKeyPress="checkInt()">
+                                </li>
+                                <li class="birth">
+                                    <input type="text" id="rn_jumin1" name="rn_jumin1" maxlength="6" placeholder="생&nbsp;년&nbsp;월&nbsp;일" onKeyUp="onlyNumber(this);" onKeyPress="checkInt()">
+                                </li>
+                                <li class="region">
+                                    <select>
+                                        <option value="" disabled selected>지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;역</option>
+                                        <option value="서울">서울</option>
+                                        <option value="경기">경기</option>
+                                        <option value="부산">부산</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </form>	
+                        <div class="db_box_btn">
+                            <a href="javascript:void(0)" onclick="return false" class="open_popup" >
+                                <img src="./images/20230721_aia_form_btn.png" alt="">
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="btn">
+                        <div class="open_form_btn"><img src="./images/20230721_aia_floating_arrow.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+            <!-- floating end -->
+
+
+
+            <!-- popup : 개인정보 동의 -->
+            <div class="popup agree" data-receive="popup_event">
+                <!-- <div class="mask"></div> -->
+                <div class="popup_inner">
+                    <div class="popup_content">
+                        <div class="img">
+                            <img src="./images/20230721_blank.gif" data-pc-src="./images/w20230721_popup_title01.png" data-mo-src="./images/m20230721_popup_title01.png" alt="" >
+                        </div>
+                        <div class="wrap">
+                            <div class="agree_area">
+                                <div class="agree">
+                                    <div>
+                                        <input type="checkbox" class="checkbox all_check_input" id="selectAll" name="selectAll">
+                                        <label for="selectAll">전체 항목 동의</label>
+                                    </div>
+                                </div>
+                                <div class="agree">
+                                    <div>
+                                        <input type="checkbox" class="checkbox" id="cust_uyn1" name="cust_uyn1">
+                                        <label for="cust_uyn1">개인정보 수집 및 이용 동의(필수)</label>
+                                        <div class="toggle">
+                                            <img src="./images/20230721_popup_agree01.png" alt="" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="agree">
+                                    <div>
+                                        <input type="checkbox" class="checkbox" id="cust_uyn2" name="cust_uyn2">
+                                        <label for="cust_uyn2">광고성 정보 수신 동의(선택)</label>
+                                        <div class="toggle">
+                                            <img src="./images/20230721_popup_agree02.jpg" alt="" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="agree">
+                                    <div>
+                                        <input type="checkbox" class="checkbox" id="cust_eyn1" name="cust_eyn1">
+                                        <label for="cust_eyn1">제 3자 정보 제공 동의(선택)</label>
+                                        <div class="toggle">
+                                            <img src="./images/20230721_popup_agree03.jpg" alt="" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="all_check" >
+                                    <img src="./images/20230721_blank.gif" data-pc-src="./images/w20230721_popup_btn01.png" data-mo-src="./images/m20230721_popup_btn01.png" alt="">
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn_close">
+                            <img src="./images/20230721_popup_btn_close.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- // popup : 개인정보 동의 -->
+        </div>
+    </div>
+    
+
+    <script src="./js/jquery-2.1.1.min.js"></script>
+    <script>
+        (function($) {
+            var AIA_UI = {
+                var : {
+                    sChecked : null,
+                    dChecked : null
+                },
+
+                popup: function() {
+                    $('.open_popup').on({
+                        "click" : function(e){
+                            $('.popup').addClass('on');
+                        }
+                    });
+
+                    $(".popup .btn_close").on({
+                        "click" : function(e){
+                            $(this).parents(".popup").removeClass('on');
+                            e.preventDefault();
+                        }
+                    });
+                },
+
+                event : function(){
+                    $(".guide_area button").on({
+                        "click" : function(e){
+                            var target = $(this).parents(".guide_area").find(".guide_wrap");
+                            if(target.hasClass("on")){
+                                target.removeClass("on");
+                            } else {
+                                target.addClass("on");
+                                $("body, html").animate({ scrollTop :  parseInt($(".guide_area").offset().top - $(".header").height()) }, 500);
+                            }
+                        }
+                    });
+
+                    $(".floating .open_form_btn").on({
+                        "click" : function(e){
+                            var _this 	= $(this);
+                            var target 	= $(".floating");
+                            if(! target.hasClass("on") ){
+                                target.addClass("on");
+                            }else{
+                                target.removeClass("on")
+                            }
+
+                            e.preventDefault();
+                        }
+                    });
+                    
+                    $(".floating .btn_toggle").on({
+                        "click" : function(e){
+                            var target 	= $(".floating");
+                            if( target.hasClass("on") ){
+                                target.removeClass("on");
+                            } else {
+                                target.addClass("on");
+                            }
+                            e.preventDefault();
+                        }
+                    });
+
+
+                    $(".popup.agree .all_check_input").on({
+                        "click" : function(e){
+                            if($(".popup.agree .all_check_input").is(":checked")){
+                                $(".popup.agree .agree input[type='checkbox']").prop("checked", true);
+                            } else{
+                                $(".popup.agree .agree input[type='checkbox']").prop("checked", false);
+                            }
+
+                            var total = $(".popup.agree .agree input[type='checkbox']").length;
+                            var checked = $(".popup.agree .agree input[type='checkbox']:checked").length;
+
+                            if(total != checked){
+                                $(".popup.agree .all_check_input").prop("checked", false);
+                            }else{
+                                $(".popup.agree .all_check_input").prop("checked", true); 
+                            }
+                        } 
+                    });
+                    $(".popup.agree .all_check").on({
+                        "click" : function(e){
+                            if(!$('.popup.agree .agree input[name="cust_uyn1"]:checkbox').is(':checked')) { 
+                                alert('필수 항목이 선택되지 않았습니다.'); return false;
+                            }
+                        }
+                    });
+
+                    
+                },
+
+                scroll : function(){
+                    $(window).scroll(function(){
+                        var windowTop = $(window).scrollTop();
+                        if( AIA_UI.var.sChecked == "s1" ){
+                            if( windowTop >= $(".sc2").offset().top - 100 && windowTop < $(".sc3").offset().top + 100){
+                                $("#AIA_wrap").addClass("show");
+                            } else {
+                                $("#AIA_wrap").removeClass("show");
+                            } 
+
+                            if( windowTop > $(".guide_area").offset().top ){
+                                $("#AIA_wrap").addClass("show");
+                            }
+
+                            
+                        } else {
+                            if (windowTop > $(".sc2").offset().top - 200 && windowTop < $(".sc3").offset().top + 200){
+                                $(".floating").addClass("fixed");
+                            }else{
+                                $(".floating").removeClass("fixed");
+                            }
+
+                            if( windowTop > $(".guide_area").offset().top){
+                                $(".floating").addClass("fixed");
+                            }
+                        }
+
+                    });
+                },
+
+                init: function() {
+                    AIA_UI.var.sChecked = $(window).width() > 1080 ? "s2" : "s1";
+                    AIA_UI.var.dChecked = AIA_UI.var.sChecked;
+
+                    imgReplace();
+                    function imgReplace(){
+                        $("#AIA_wrap img").each(function(){
+                            if( AIA_UI.var.sChecked == "s1" ){
+                                $(this).attr("src", $(this).attr("data-mo-src"));
+                            } else {
+                                $(this).attr("src", $(this).attr("data-pc-src"));
+                            }
+                        });
+                    }
+
+                    $(window).resize(function(){
+                        AIA_UI.var.sChecked = $(window).width() > 1080 ? "s2" : "s1";
+                        if( AIA_UI.var.sChecked != AIA_UI.var.dChecked ){
+                            imgReplace();
+                            AIA_UI.var.dChecked = AIA_UI.var.sChecked
+                        }
+                    });
+
+                    this.popup(), this.event(), this.scroll()
+                }
+            };
+            $(function() {
+                AIA_UI.init();
+            });
+
+            $(window).load(function(){
+                setTimeout(function(){$(window).scrollTop(0);},0);
+            });
+        })(jQuery);
+
+        
+        //에니메이션 js
+        !function(a){function b(b){this.htmlElement=b,this.animations=a(this.htmlElement).attr("data-animations").split(","),this.animationIndex=0,this.lastAnimation="",void 0!==a(this.htmlElement).attr("data-animation-duration")&&(this.animationDuration=a(this.htmlElement).attr("data-animation-duration").split(",")),void 0!==a(this.htmlElement).attr("data-animation-delay")&&(this.animationDelay=a(this.htmlElement).attr("data-animation-delay").split(","))}function c(){this.elements=[],this.animateWhenVisible=!1,this.isPerformingAnimation=!1,this.resetWhenOffscreen=!1,this.repeat=!1,this.isReset=!0}function d(){this.onVisbileGroups=[],this.map=[],a(".animate-plus").addClass("animated"),a.each(a(".animate-plus"),function(d,e){var f=new b(e),g=a(e).attr("data-animation-group");void 0===g&&(g="_"+d,a(e).attr("data-animation-group",g)),void 0===this.map[g]&&(this.map[g]=new c);var h=a(e).attr("data-animation-when-visible");void 0!==h&&(this.map[g].animateWhenVisible=!0);var i=a(e).attr("data-animation-reset-offscreen");void 0!==i&&(this.map[g].resetWhenOffscreen=!0);var j=a(e).attr("data-animation-repeat");void 0!==j&&(this.map[g].repeat=!0);var k=this.map[g].elements,l=a(e).attr("data-animation-order"),m=void 0!==l;if(m)var n=l.split(",");for(var o=a(e).attr("data-animations").split(","),p=0;p<o.length;p++){var q=p+1;m&&(q=n[p]),void 0===k[q]&&(k[q]=[]),k[q].push(f)}}.bind(this)),a(window).on("scroll",function(){this.checkOnVisibleGroups()}.bind(this)),a(window).on("resize",function(){this.checkOnVisibleGroups()}.bind(this)),a(document).ready(function(){this.checkOnVisibleGroups()}.bind(this)),this.isElementVisible=function(b){var c=a(window).scrollTop(),d=a(window).height()+c-150,e=a(b).offset().top,f=a(b).height()+e;return d>=e&&f>=c},this.checkOnVisibleGroups=function(){for(var a=0;a<this.onVisbileGroups.length;a++)for(var b=this.map[this.onVisbileGroups[a]],c=1;c<b.elements.length;c++)for(var d=b.elements[c],e=0;e<d.length;e++){var f=d[e].htmlElement;this.isElementVisible(f)&&!b.isPerformingAnimation&&b.animate(1),this.isElementVisible(f)||b.isPerformingAnimation||!b.resetWhenOffscreen||b.reset()}}}jQuery.fn.redraw=function(){return this.hide(0,function(){a(this).show()})},jQuery.fn.restartAnimation=function(){var b=a(this).attr("data-animation-group"),c=d.getInstance().getMap()[b];c.restart()},b.prototype.doNextAnimation=function(b){if(this.animationIndex>=this.animations.length)return void b();var c,d;a(this.htmlElement).removeClass(this.lastAnimation),this.lastAnimation=this.animations[this.animationIndex],a(this.htmlElement).css("animation-duration","").css("-webkit-animation-duration","").css("-moz-animation-duration","").css("-ms-animation-duration","").css("-o-animation-duration",""),void 0!==this.animationDuration&&void 0!==this.animationDuration[this.animationIndex]&&(c=this.animationDuration[this.animationIndex],a(this.htmlElement).css("animation-duration",c).css("-webkit-animation-duration",c).css("-moz-animation-duration",c).css("-ms-animation-duration",c).css("-o-animation-duration",c)),a(this.htmlElement).css("animation-delay","").css("-webkit-animation-delay","").css("-moz-animation-delay","").css("-ms-animation-delay","").css("-o-animation-delay",""),void 0!==this.animationDelay&&void 0!==this.animationDelay[this.animationIndex]&&(d=this.animationDelay[this.animationIndex],a(this.htmlElement).css("animation-delay",d).css("-webkit-animation-delay",d).css("-moz-animation-delay",d).css("-ms-animation-delay",d).css("-o-animation-delay",d)),this.animationIndex++,a(this.htmlElement).redraw(),a(this.htmlElement).addClass(this.lastAnimation).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",b)},c.prototype.reset=function(){if(!this.isReset){for(var b=1;b<this.elements.length;b++)for(var c=0;c<this.elements[b].length;c++)this.elements[b][c].animationIndex=0,a(this.elements[b][c].htmlElement).removeClass(this.elements[b][c].lastAnimation);this.isReset=!0}},c.prototype.animate=function(a){var b=0,c=this.elements[a];if(void 0===c)return void(this.repeat?(this.reset(),this.animate(1)):this.isPerformingAnimation=!1);this.isPerformingAnimation=!0,this.isReset=!1;for(var d=0;d<c.length;d++)c[d].doNextAnimation(function(){b++,b==c.length&&this.animate(++a)}.bind(this))},c.prototype.restart=function(){this.isPerformingAnimation||(this.reset(),this.animate(1))},d.prototype.start=function(){for(var a in this.map)this.map.hasOwnProperty(a)&&(this.map[a].animateWhenVisible?this.registerOnVisbileMap(a):this.map[a].animate(1))},d.prototype.registerOnVisbileMap=function(a){this.onVisbileGroups.push(a)},d.prototype.getMap=function(){return this.map},d.instance=null,d.getInstance=function(){return null===d.instance&&(d.instance=new d),d.instance},a(document).ready(function(){d.getInstance().start()})}(jQuery);
+
+    </script>
+</body>
+</html>
